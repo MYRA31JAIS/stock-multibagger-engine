@@ -111,6 +111,22 @@ def simple_health():
     """Simple health check for Render"""
     return "OK", 200
 
+@app.route('/', methods=['GET', 'HEAD'])
+def root():
+    """Root endpoint for health checks"""
+    return jsonify({
+        'service': 'Stock Multibagger Engine API',
+        'status': 'running',
+        'version': '2.0',
+        'endpoints': {
+            'health': '/health',
+            'api_health': '/api/health',
+            'initialize': '/api/initialize',
+            'analyze': '/api/analyze',
+            'predefined_sets': '/api/predefined-sets'
+        }
+    })
+
 @app.route('/api/system-status', methods=['GET'])
 def get_system_status():
     """Get detailed system status"""
