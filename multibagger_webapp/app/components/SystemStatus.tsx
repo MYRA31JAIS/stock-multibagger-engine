@@ -128,9 +128,23 @@ export default function SystemStatus({
           <button
             onClick={onInitialize}
             className="btn-primary text-sm py-2 px-4"
-            disabled={status === 'initializing'}
+            disabled={false}
           >
-            {status === 'initializing' ? 'Initializing...' : 'Initialize System'}
+            Initialize System
+          </button>
+        </div>
+      )}
+
+      {status === 'initializing' && (
+        <div className="mt-4 flex items-center justify-between">
+          <p className="text-sm text-yellow-300">
+            Initializing AI system...
+          </p>
+          <button
+            className="btn-primary text-sm py-2 px-4"
+            disabled={true}
+          >
+            Initializing...
           </button>
         </div>
       )}
