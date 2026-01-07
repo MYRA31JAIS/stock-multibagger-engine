@@ -36,6 +36,7 @@
    Environment: Python 3
    Build Command: pip install -r requirements.txt
    Start Command: python app.py
+   Python Version: 3.11.9 (specified in runtime.txt)
    ```
 
 3. **Add Environment Variables**
