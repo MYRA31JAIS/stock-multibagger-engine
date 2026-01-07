@@ -9,6 +9,9 @@ import AnalysisPanel from './components/AnalysisPanel'
 import SystemStatus from './components/SystemStatus'
 import BeginnerGuide from './components/BeginnerGuide'
 
+// Get API URL from environment or use default
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
+
 export default function Home() {
   const [systemStatus, setSystemStatus] = useState('checking')
   const [analysisResults, setAnalysisResults] = useState(null)
@@ -26,7 +29,7 @@ export default function Home() {
 
   const checkSystemStatus = async () => {
     try {
-      const response = await fetch('/api/status')
+      const response = await fetch(`${API_URL}/api/status`)
       const status = await response.json()
       
       if (status.status === 'operational') {
@@ -51,7 +54,7 @@ export default function Home() {
     setError('')
     
     try {
-      const response = await fetch('/api/initialize', {
+      const response = await fetch(`${API_URL}/api/initialize`, {
         method: 'POST'
       })
       
@@ -82,7 +85,7 @@ export default function Home() {
     setError('')
     
     try {
-      const response = await fetch('/api/analyze', {
+      const response = await fetch(`${API_URL}/api/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ stocks })
@@ -159,10 +162,10 @@ export default function Home() {
               <p className="text-red-200 text-sm mt-1">{error}</p>
               {systemStatus === 'backend_offline' && (
                 <div className="mt-3 p-3 bg-dark-800 rounded border-l-4 border-yellow-500">
-                  <p className="text-yellow-300 text-sm font-medium">To start the Python backend:</p>
-                  <code className="text-yellow-200 text-xs block mt-1">
-                    cd multibagger_webapp/python_bridge && python server.py
-                  </code>
+                  <p className="text-yellow-300 text-sm font-medium">Backend URL: {API_URL}</p>
+                  <p className="text-yellow-200 text-xs mt-1">
+                    Make sure the backend is running and accessible
+                  </p>
                 </div>
               )}
             </motion.div>

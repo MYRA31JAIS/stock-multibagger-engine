@@ -21,12 +21,16 @@ from server import app
 # Both 'app' and 'application' will work
 application = app
 
+# Also expose as 'app' for compatibility
+app = app
+
 # Expose the app for gunicorn
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 10000))  # Render uses port 10000
     debug_mode = os.environ.get('FLASK_ENV', 'production') == 'development'
     
     print(f"🚀 Starting Stock Multibagger Engine API Server...")
     print(f"🌐 Server running on port {port}")
+    print(f"🔗 Backend URL: https://stock-multibagger-engine-6.onrender.com")
     
     app.run(host='0.0.0.0', port=port, debug=debug_mode)

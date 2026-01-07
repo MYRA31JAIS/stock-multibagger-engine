@@ -5,5 +5,10 @@
   "installCommand": "cd multibagger_webapp && npm install",
   "env": {
     "NEXT_PUBLIC_API_URL": "https://stock-multibagger-engine-6.onrender.com"
+  },
+  "functions": {
+    "multibagger_webapp/app/**": {
+      "runtime": "nodejs18.x"
+    }
   }
 }

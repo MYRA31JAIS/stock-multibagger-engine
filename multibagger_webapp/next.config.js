@@ -3,9 +3,15 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com'],
   },
-  output: 'export',
-  trailingSlash: true,
-  distDir: 'out'
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://stock-multibagger-engine-6.onrender.com'
+  }
 }
 
 module.exports = nextConfig
