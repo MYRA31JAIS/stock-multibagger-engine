@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "cd multibagger_webapp && npm run build",
-  "outputDirectory": "multibagger_webapp/.next",
-  "installCommand": "cd multibagger_webapp && npm install",
   "env": {
     "NEXT_PUBLIC_API_URL": "https://stock-multibagger-engine-6.onrender.com"
   }
