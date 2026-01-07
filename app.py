@@ -17,6 +17,10 @@ os.chdir(bridge_path)
 # Import the Flask app
 from server import app
 
+# Expose the app for gunicorn (this is what Render expects)
+# Both 'app' and 'application' will work
+application = app
+
 # Expose the app for gunicorn
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
