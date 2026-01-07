@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "multibagger_webapp/package.json",
+      "use": "@vercel/next",
+      "config": {
+        "distDir": "out"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/multibagger_webapp/$1"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://stock-multibagger-engine7.onrender.com"
+  }
+}
