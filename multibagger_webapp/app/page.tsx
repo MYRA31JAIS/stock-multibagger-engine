@@ -10,7 +10,7 @@ import SystemStatus from './components/SystemStatus'
 import BeginnerGuide from './components/BeginnerGuide'
 
 // Get API URL from environment or use default
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://stock-multibagger-engine7.onrender.com'
 
 export default function Home() {
   const [systemStatus, setSystemStatus] = useState<string>('checking')

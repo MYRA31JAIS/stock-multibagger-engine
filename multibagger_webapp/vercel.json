@@ -1,6 +1,6 @@
 {
   "version": 2,
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://stock-multibagger-engine-6.onrender.com"
+    "NEXT_PUBLIC_API_URL": "https://stock-multibagger-engine7.onrender.com"
   }
 }
