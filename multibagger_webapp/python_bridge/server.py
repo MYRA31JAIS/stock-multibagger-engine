@@ -535,11 +535,12 @@ if __name__ == '__main__':
         print("⚠️  Multi-Agent system dependencies not available")
         print("   Make sure you're in the correct directory and dependencies are installed")
     
-    # Production configuration
+    # Production configuration - Render provides PORT environment variable
     port = int(os.environ.get('PORT', 5000))
     debug_mode = os.environ.get('FLASK_ENV', 'production') == 'development'
     
-    print(f"🌐 Server running on http://0.0.0.0:{port}")
+    print(f"🌐 Server starting on 0.0.0.0:{port}")
+    print(f"📡 PORT environment: {os.environ.get('PORT', 'Not set - using default 5000')}")
     print("📡 Ready to receive analysis requests from frontend")
     print("\n📋 Available Endpoints:")
     print("   GET  /health - Simple health check")
