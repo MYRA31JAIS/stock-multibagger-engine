@@ -1,9 +1,13 @@
-'use client'
-
 import './globals.css'
 import { Inter } from 'next/font/google'
+import type { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'Multi-Agent AI Stock Research',
+  description: 'Discover high-probability multibagger opportunities using AI',
+}
 
 export default function RootLayout({
   children,
@@ -12,11 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <title>Multi-Agent AI Stock Research</title>
-        <meta name="description" content="Discover high-probability multibagger opportunities using AI" />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
       <body className={`${inter.className} bg-dark-950 text-white min-h-screen`}>
         <div className="min-h-screen bg-gradient-to-br from-dark-950 via-dark-900 to-dark-950">
           {children}

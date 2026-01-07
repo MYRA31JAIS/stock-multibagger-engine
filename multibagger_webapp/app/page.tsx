@@ -13,12 +13,12 @@ import BeginnerGuide from './components/BeginnerGuide'
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
 
 export default function Home() {
-  const [systemStatus, setSystemStatus] = useState('checking')
-  const [analysisResults, setAnalysisResults] = useState(null)
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const [selectedStocks, setSelectedStocks] = useState([])
-  const [error, setError] = useState('')
-  const [systemInfo, setSystemInfo] = useState(null)
+  const [systemStatus, setSystemStatus] = useState<string>('checking')
+  const [analysisResults, setAnalysisResults] = useState<any>(null)
+  const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false)
+  const [selectedStocks, setSelectedStocks] = useState<string[]>([])
+  const [error, setError] = useState<string>('')
+  const [systemInfo, setSystemInfo] = useState<any>(null)
 
   useEffect(() => {
     checkSystemStatus()
@@ -29,21 +29,21 @@ export default function Home() {
 
   const checkSystemStatus = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/status`)
+      const response = await fetch(`${API_URL}/api/system-status`)
       const status = await response.json()
       
-      if (status.status === 'operational') {
+      if (status.status === 'active') {
         setSystemStatus('active')
         setSystemInfo(status)
         setError('')
-      } else if (status.backend_running === false) {
+      } else if (status.status === 'not_initialized') {
         setSystemStatus('backend_offline')
-        setError('Python AI system is not running. Please start the backend server.')
+        setError('Python AI system needs initialization.')
       } else {
         setSystemStatus('error')
         setError(status.message || 'System error')
       }
-    } catch (err) {
+    } catch (err: unknown) {
       setSystemStatus('backend_offline')
       setError('Cannot connect to Python AI system')
     }
@@ -68,9 +68,9 @@ export default function Home() {
         setSystemStatus('error')
         setError(result.error || 'Initialization failed')
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       setSystemStatus('error')
-      setError(err.message || 'Failed to initialize system')
+      setError(err instanceof Error ? err.message : 'Failed to initialize system')
     }
   }
 
@@ -100,8 +100,8 @@ export default function Home() {
         setError(results.error || 'Analysis failed')
         setAnalysisResults(null)
       }
-    } catch (err: any) {
-      setError(err.message || 'Analysis request failed')
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Analysis request failed')
       setAnalysisResults(null)
     } finally {
       setIsAnalyzing(false)

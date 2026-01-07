@@ -2,12 +2,13 @@
   "name": "multibagger-ai-research",
   "version": "1.0.0",
   "description": "Multi-Agent AI Research System for Indian Multibagger Discovery",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "@headlessui/react": "1.7.17",
