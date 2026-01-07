@@ -34,9 +34,8 @@
    ```
    Name: multibagger-python-api
    Environment: Python 3
-   Root Directory: multibagger_webapp/python_bridge
    Build Command: pip install -r requirements.txt
-   Start Command: python server.py
+   Start Command: python app.py
    ```
 
 3. **Add Environment Variables**
