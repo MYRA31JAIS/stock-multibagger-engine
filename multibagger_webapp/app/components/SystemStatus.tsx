@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Activity, Users, Database, Power, AlertCircle } from 'lucide-react'
 
 interface SystemStatusProps {
-  status: string
+  status: 'active' | 'initializing' | 'checking' | 'backend_offline' | 'error'
   agentsActive: number
   stocksAnalyzed: number
   onInitialize?: () => void
