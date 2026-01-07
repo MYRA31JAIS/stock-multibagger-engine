@@ -1,195 +1,73 @@
-# Multibagger Stock Analysis System
+# 🎯 Stock Multibagger Engine
 
-A sophisticated AI-powered system for discovering multibagger stocks in the Indian market using 6 specialized AI agents.
-
-## 🏗️ System Architecture
-
-```
-User Browser
-    ↓
-Next.js Frontend (multibagger_webapp) - Port 3000
-    ↓
-Next.js API Routes (/api/initialize, /api/analyze, /api/status)
-    ↓
-Python Bridge Server (Flask) - Port 5000
-    ↓
-Multi-Agent AI System (multibagger_system)
-    ├── Fundamental Agent - Financial analysis
-    ├── Management Agent - Leadership quality
-    ├── Technical Agent - Chart patterns
-    ├── Smart Money Agent - Institutional activity
-    ├── Policy Agent - Regulatory impact
-    └── Supervisor Agent - Final synthesis
-```
+AI-powered multibagger stock discovery system using 6 specialized agents for Indian stock market analysis.
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.8+ installed
-- Node.js 16+ installed
-- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
+1. **Clone & Setup**
+   ```bash
+   git clone https://github.com/MYRA31JAIS/stock-multibagger-engine
+   cd stock-multibagger-engine
+   ```
 
-### Option 1: Automated Setup (Windows)
-```bash
-# Run the setup script
-start_system.bat
-```
+2. **Configure API Keys**
+   ```bash
+   # Copy and edit environment files
+   cp .env.example .env
+   cp multibagger_webapp/python_bridge/.env.example multibagger_webapp/python_bridge/.env
+   
+   # Add your API keys to both .env files
+   ```
 
-### Option 2: Manual Setup
+3. **Run System**
+   ```bash
+   # Start Python backend
+   cd multibagger_webapp/python_bridge
+   python server.py
+   
+   # Start Next.js frontend (new terminal)
+   cd multibagger_webapp
+   npm install && npm run dev
+   ```
 
-#### Step 1: Configure Environment Variables
-1. Edit `.env` file and add your OpenAI API key:
-```env
-OPENAI_API_KEY=your_actual_openai_api_key_here
-```
+4. **Access**: http://localhost:3000
 
-2. Edit `multibagger_system/.env` file and add your OpenAI API key:
-```env
-OPENAI_API_KEY=your_actual_openai_api_key_here
-```
+## 📊 System Features
 
-#### Step 2: Install Dependencies
-```bash
-# Install Python dependencies
-cd multibagger_system
-pip install -r requirements.txt
-cd ..
+- **6 AI Agents**: Fundamental, Technical, Management, Smart Money, Policy, Supervisor
+- **Real Data**: Live NSE prices, financials, news sentiment, FII/DII flows
+- **AI Analysis**: Multiple providers (Groq, Gemini, Hugging Face) with fallback
+- **Multibagger Scoring**: 0-100% probability with detailed insights
 
-# Install Node.js dependencies
-cd multibagger_webapp
-npm install
-cd ..
-```
+## 🌐 Deploy to Render
 
-#### Step 3: Start the System (2 terminals required)
+Follow the [DEPLOYMENT.md](DEPLOYMENT.md) guide for production deployment.
 
-**Terminal 1 - Python Backend:**
-```bash
-cd multibagger_webapp/python_bridge
-python server.py
-```
-Wait for: "✅ Multi-Agent System initialized successfully"
+## 🔑 Required APIs
 
-**Terminal 2 - Next.js Frontend:**
-```bash
-cd multibagger_webapp
-npm run dev
-```
-Wait for: "Ready on http://localhost:3000"
+**Free APIs** (choose at least one AI provider):
+- Groq API (recommended)
+- Google Gemini API  
+- Hugging Face API
+- NewsAPI
+- Alpha Vantage API
+- Finnhub API
 
-#### Step 4: Access the System
-Open http://localhost:3000 in your browser
+## 📈 Example Results
 
-## 🎯 How to Use
+**TCS.NS Analysis**: 60.9% multibagger probability
+- Fundamental Score: 6.0/10
+- Technical Stage: BASE
+- Smart Money: Institutional interest
+- Policy Impact: STRONG
 
-1. **Initialize System**: Click "Initialize AI System" button
-2. **Select Stocks**: Choose from predefined sets or enter custom symbols
-3. **Run Analysis**: Click "Analyze Stocks" to start AI analysis
-4. **View Results**: See high-conviction multibagger candidates
+## 🛠️ Tech Stack
 
-## 🤖 AI Agents
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **Backend**: Python Flask, Multi-Agent AI System
+- **Data**: yfinance, NSE API, NewsAPI, Alpha Vantage
+- **AI**: Groq, Gemini, Hugging Face APIs
 
-### 1. Fundamental Agent (35% weight)
-- Revenue growth analysis
-- Profit margin trends
-- Debt-to-equity ratios
-- Return on equity patterns
-- Cash flow analysis
+## 📝 License
 
-### 2. Management Agent (15% weight)
-- Leadership quality assessment
-- Corporate governance
-- Strategic vision evaluation
-- Execution track record
-
-### 3. Technical Agent (15% weight)
-- Chart pattern recognition
-- Support/resistance levels
-- Volume analysis
-- Momentum indicators
-
-### 4. Smart Money Agent (15% weight)
-- Institutional buying/selling
-- Mutual fund holdings
-- FII/DII activity
-- Bulk/block deals
-
-### 5. Policy Agent (20% weight)
-- Regulatory environment
-- Government policy impact
-- Sector-specific policies
-- Macroeconomic factors
-
-### 6. Supervisor Agent
-- Synthesizes all agent outputs
-- Applies weighted scoring
-- Categorizes stocks by conviction level
-
-## 📊 Stock Categories
-
-- **High Probability Multibaggers** (Score ≥ 60%): Strong buy candidates
-- **Early Watchlist** (Score 45-59%): Monitor for entry points
-- **Rejected** (Score < 45%): Avoid or wait for better setup
-
-## 🔧 Configuration
-
-### Environment Variables
-- `OPENAI_API_KEY`: Required for AI analysis
-- `NSE_API_KEY`: Optional, for real NSE data
-- `ALPHA_VANTAGE_API_KEY`: Optional, for stock prices
-- `FINNHUB_API_KEY`: Optional, for market data
-
-### System Settings (config.py)
-- `MULTIBAGGER_THRESHOLD`: 0.60 (60% minimum score)
-- `WATCHLIST_THRESHOLD`: 0.45 (45% minimum score)
-- `AGENT_WEIGHTS`: Configurable agent importance
-
-## 🐛 Troubleshooting
-
-### "Python AI system is not running"
-- Ensure Python backend is started first
-- Check if port 5000 is available
-- Verify Python dependencies are installed
-
-### "System initialization failed"
-- Check if OPENAI_API_KEY is set correctly
-- Verify internet connection for API calls
-- Check Python console for error messages
-
-### Analysis takes too long
-- Reduce number of stocks analyzed
-- Check OpenAI API rate limits
-- Ensure stable internet connection
-
-## 📁 Project Structure
-
-```
-├── multibagger_webapp/          # Next.js frontend
-│   ├── app/                     # Next.js 13+ app directory
-│   ├── python_bridge/           # Flask server connecting to AI system
-│   └── package.json
-├── multibagger_system/          # Python AI system
-│   ├── agents/                  # 6 AI agents
-│   ├── data_sources/            # Data fetching modules
-│   ├── config.py                # System configuration
-│   └── main_system.py           # Main orchestrator
-├── .env                         # Root environment variables
-└── README.md                    # This file
-```
-
-## 🔮 Future Enhancements
-
-- Real-time NSE/BSE data integration
-- Portfolio tracking and management
-- Backtesting engine for strategy validation
-- Mobile app for on-the-go analysis
-- Advanced charting and visualization
-- Email/SMS alerts for opportunities
-
-## ⚠️ Disclaimer
-
-This system is for educational and research purposes only. Not financial advice. Always do your own research and consult with financial advisors before making investment decisions.
-
-## 📄 License
-
-MIT License - See LICENSE file for details
+MIT License - See LICENSE file for details.
