@@ -14,10 +14,11 @@ sys.path.insert(0, str(bridge_path))
 # Change working directory to the bridge directory
 os.chdir(bridge_path)
 
-# Import and run the server
+# Import the Flask app
+from server import app
+
+# Expose the app for gunicorn
 if __name__ == "__main__":
-    from server import app
-    
     port = int(os.environ.get('PORT', 5000))
     debug_mode = os.environ.get('FLASK_ENV', 'production') == 'development'
     
